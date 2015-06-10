@@ -4,10 +4,7 @@ Indecipherable symbols that some people claim have actual meaning.
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-## Installation ##
-
-Note that as of Runes 1.2, `master` will assume Swift 1.2. The Runes 1.1.x
-series of releases are considered stable for long-term use.
+## Framework Installation ##
 
 ### [Carthage] ###
 
@@ -41,6 +38,39 @@ use_frameworks!
 ```
 
 Then run `pod install` with CocoaPods 0.36 or newer.
+
+## Adding Runes as a Framework Dependency ##
+
+Runes can also be used as a low-overhead dependency for defining these
+operators for your own types. After linking to `Runes.swift`, you will be able
+to define implementations for your types, and your users will be able to just
+import your framework to use these operators.
+
+### [Carthage] ###
+
+```
+github "thoughtbot/runes"
+```
+
+Then run `carthage update`. Once you've checked out the required version, you
+can link `Carthage/Checkouts/Runes/Source/Runes.swift` directly into your
+framework.
+
+### [CocoaPods] ###
+
+First, you will need to make sure that Runes is added as a submodule for your
+repo. Then, you'll need to make sure to enable submodule support for your
+source directive:
+
+```ruby
+s.source = { :git => "https://github.com/thoughtbot/Argo", :tag => "v#{s.version}", :submodules => true }
+```
+
+Then, you can add `Runes.swift` as a source file:
+
+```ruby
+spec.source_files = 'Argo/**/*.{h,swift}', 'Carthage/Checkouts/Runes/Source/Runes.swift'
+```
 
 ## What's included? ##
 
